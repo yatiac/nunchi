@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model List {
+  id      Int      @id @default(autoincrement())
+  name    String
+  slug    String   @unique @db.VarChar(8)
+  products Product[] // Establishes a one-to-many relationship with Product
+}
+
+model Product {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String
+  store       String
+  price       String
+  image       String
+  url         String
+  bought      Boolean @default(false)
+  listId      Int?    // Foreign key to List
+  list        List?   @relation(fields: [listId], references: [id]) // Establishes the relationship
+}
