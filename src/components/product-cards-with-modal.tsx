@@ -14,24 +14,9 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
+import { Product } from "@/types/product"
+import { List } from "@/types/list"
 
-// Product type definition
-type Product = {
-  id: number
-  title: string
-  description: string
-  store: string
-  price: string
-  image: string
-  url: string
-  bought: boolean
-}
-
-type List = { 
-  name: string,
-  slug: string,
-  products: Product[]
-}
 
 // ProductCard component
 function ProductCard({ product, onPurchase }: { product: Product; onPurchase: (id: number) => void }) {
@@ -83,7 +68,7 @@ function ProductCard({ product, onPurchase }: { product: Product; onPurchase: (i
           <AlertDialogHeader>
             <AlertDialogTitle>¿Estás seguro que quieres marcar este producto como comprado?</AlertDialogTitle>
             <AlertDialogDescription>
-              Al hacer click en 'Si' se removerá el producto de la lista y se abrirá una pestaña con el link para comprarlo
+              {`Al hacer click en 'Si' se removerá el producto de la lista y se abrirá una pestaña con el link para comprarlo`}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
