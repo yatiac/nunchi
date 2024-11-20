@@ -14,7 +14,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
-import * as productService from '@/services/productService'
 
 // Product type definition
 type Product = {
@@ -61,7 +60,11 @@ function ProductCard({ product, onPurchase }: { product: Product; onPurchase: (i
             />
           </div>
           <div className="p-4 flex flex-col">
-            <h3 className="text-lg font-semibold">{product.title}</h3>
+            <h3 className="text-lg font-semibold">
+              <a href={product.url} target="_blank" rel="noopener noreferrer">
+                {product.title}
+              </a>
+            </h3>
             <p className="text-sm text-muted-foreground mb-2">{product.description}</p>
             <div className="flex justify-between items-center mt-2">
               <p className="text-sm font-medium">Tienda: {product.store}</p>
