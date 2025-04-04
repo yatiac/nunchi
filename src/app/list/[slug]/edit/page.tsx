@@ -60,7 +60,7 @@ export default function Page({
       {productData && (
         <>
         <h2> Previsualización: </h2>      
-        <div className="w-[400px]">
+        <div className='grid gap-6 m-6 md:grid-cols-2 lg:grid-cols-3 min-h-4'>
           <ProductCard 
             key={productData.id}
             product={productData}

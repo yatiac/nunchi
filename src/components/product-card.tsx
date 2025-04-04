@@ -21,20 +21,20 @@ import { Textarea } from "@/components/ui/textarea"
 
 
 // ProductCard component
-export default function ProductCard({ 
-  product: initialProduct, 
-  onPurchase, 
+export default function ProductCard({
+  product: initialProduct,
+  onPurchase,
   onEdit,
   onAddToList,
   editable = false,
-  deletable = false }: { 
-  product: Product
-  onPurchase: (id: number) => void
-  onEdit?: (id: number, updatedProduct: Partial<Product>) => void
-  onAddToList?: (product: Partial<Product>) => void
-  editable?: boolean
-  deletable?: boolean
-}) {
+  deletable = false }: {
+    product: Product
+    onPurchase: (id: number) => void
+    onEdit?: (id: number, updatedProduct: Partial<Product>) => void
+    onAddToList?: (product: Partial<Product>) => void
+    editable?: boolean
+    deletable?: boolean
+  }) {
   const [product, setProduct] = useState(initialProduct)
   const [showModal, setShowModal] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
@@ -50,7 +50,7 @@ export default function ProductCard({
   }
 
   const handleAddToList = () => {
-    if(onAddToList) {
+    if (onAddToList) {
       onAddToList(product)
     }
   }
@@ -68,7 +68,7 @@ export default function ProductCard({
 
   const handleSave = () => {
     setIsEditing(false)
-    if(onEdit) {
+    if (onEdit) {
       onEdit(product.id, editedFields)
     }
     setProduct({ ...product, ...editedFields })
@@ -91,22 +91,22 @@ export default function ProductCard({
 
   return (
     <>
-      <Card className={`overflow-hidden ${editable ? 'border-dashed border-[3px] border-slate-400 border-opacity-50' : ''}`}>
+      <Card className={`overflow-hidden ${editable ? 'border-dashed border-[3px] border-slate-400 border-opacity-50' : ''} `}>
         <div className="flex flex-col relative">
           <div className="m-4">
-          { isEditing ? (<Input
-                  name="title"
-                  value={editedFields.title}
-                  onChange={handleChange}
-                  className="mb-2"
-                /> ) : (
-                 <h2 className="text-xl font-semibold hover:cursor-pointer">
-                  <a href={`${product.url}`} target="_blank" rel="noopener noreferrer">
-                    {product.title}
-                  </a>
-                </h2>)
-}
-{editable && !isEditing && <Button
+            {isEditing ? (<Input
+              name="title"
+              value={editedFields.title}
+              onChange={handleChange}
+              className="mb-2"
+            />) : (
+              <h2 className="text-xl font-semibold hover:cursor-pointer overflow-clip max-h-8 truncate">
+                <a href={`${product.url}`} target="_blank" rel="noopener noreferrer">
+                  {product.title}
+                </a>
+              </h2>)
+            }
+            {editable && !isEditing && <Button
               variant="ghost"
               className="absolute top-2 right-2 bg-red-500 bg-opacity-75 hover:bg-red-500 hover:bg-opacity-100"
               onClick={handleEdit}
@@ -117,11 +117,11 @@ export default function ProductCard({
             </Button>}
             {deletable && <Button
               variant="ghost"
-              className="absolute top-2 right-2 bg-red-500 bg-opacity-75 hover:bg-red-500 hover:bg-opacity-100 flex items-center"
+              className="absolute top-2 right-2 bg-red-500 bg-opacity-75 hover:bg-red-500 hover:bg-opacity-100 flex items-center transition-all duration-300 w-10 hover:w-auto group allow-keywords"
               onClick={() => console.log(product.id)}
             >
               <Trash className="h-4 w-4 text-white transition-opacity duration-300" />
-              <span className="text-white opacity-0 transition-opacity duration-300 hover:opacity-100"> Eliminar </span>
+              <span className="text-white opacity-0 hidden transition-opacity duration-300 group-hover:opacity-100 group-hover:block"> Eliminar </span>
               <span className="sr-only">Delete product</span>
             </Button>
             }
@@ -137,7 +137,7 @@ export default function ProductCard({
               width={100}
               height={200}
             />
-           {/* {editable && <Button
+            {/* {editable && <Button
               variant="ghost"
               className="absolute top-2 right-2 bg-red-500 bg-opacity-75 hover:bg-red-500 hover:bg-opacity-100"
               onClick={handleEdit}
@@ -187,7 +187,7 @@ export default function ProductCard({
                 </div>
               </>
             ) : (
-              <>               
+              <>
                 <p className="text-sm text-muted-foreground mb-2">{product.description}</p>
                 <div className="flex justify-between items-center mt-2">
                   <p className="text-sm font-medium">Tienda: {product.store}</p>
@@ -196,17 +196,17 @@ export default function ProductCard({
               </>
             )}
             {!isEditing && (
-            <div className="mt-auto">
-              {editable  ? (
-                <Button className="mt-4 w-full bg-gray-800 align-bottom" onClick={handleAddToList}>
-                  Agregar a la lista
-                </Button>
-              ) : (
-                <Button className="mt-4 w-full align-bottom" onClick={handlePurchase}>
-                  Lo voy a comprar
-                </Button>
-              )}
-            </div>
+              <div className="mt-auto">
+                {editable ? (
+                  <Button className="mt-4 w-full bg-gray-800 align-bottom" onClick={handleAddToList}>
+                    Agregar a la lista
+                  </Button>
+                ) : (
+                  <Button className="mt-4 w-full align-bottom" onClick={handlePurchase}>
+                    Lo voy a comprar
+                  </Button>
+                )}
+              </div>
             )}
           </div>
         </div>

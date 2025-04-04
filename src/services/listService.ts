@@ -17,4 +17,35 @@ export async function getListBySlug(slug: string) {
             }
         },
     });
+    
+}
+
+/**
+ * Fetch all lists for a specific user.
+ * @param {string} userId - The ID of the user whose lists to retrieve.
+ * @returns {Promise<Object[]>} - Array of list objects belonging to the user.
+ */
+export async function getListsByUserId(userId: string) {
+    return await prisma.list.findMany({
+        // where: { userId },
+        include: {
+            products: {
+                where: { bought: false }
+            }
+        }
+    });
+}
+
+/**
+ * Fetch all lists.
+ * @returns {Promise<Object[]>} - Array of list objects.
+ */
+export async function getLists() {
+    return await prisma.list.findMany({
+        include: {
+            products: {
+                where: { bought: false }
+            }
+        }
+    });
 }

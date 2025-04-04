@@ -12,11 +12,11 @@ export default async function Page({
     <div>
       { list ? (
         <>
-          <h1 className="pt-4 text-4xl font-bold text-center mb-8 text-primary">{ list.name }</h1>
+          <h1 className="pt-4 text-3xl font-bold text-center mb-8 text-primary">{ list.name }</h1>
           <ProductCardsWithModal list={list} />
         </>
       ) : (
-        <h1 className="pt-4 text-4xl font-bold text-center mb-8 text-primary">List not found</h1>
+        <h1 className="pt-4 text-4xl font-bold text-center mb-8 text-primary">Cargando lista...</h1>
       )}
     </div>
   )

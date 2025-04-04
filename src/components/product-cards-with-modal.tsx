@@ -30,7 +30,7 @@ export function ProductCardsWithModal({ list, editable = false }: { list: List, 
 
   return (
     <div className="container mx-auto p-4">
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {availableProducts.map((product) => (
           <ProductCard 
           key={product.id}
